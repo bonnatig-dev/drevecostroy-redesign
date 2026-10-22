@@ -26,3 +26,8 @@ $$('.th button').forEach(t=>t.onclick=()=>{const mn=$('.pj .main'),i=$('img',t);
 // reveal on scroll
 const io='IntersectionObserver' in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}}),{threshold:.12}):null;
 $$('.rv-in').forEach(el=>io?io.observe(el):el.classList.add('vis'));
+
+// light header: transparent over hero, light+blur on scroll
+(function(){const h=document.querySelector('header');if(!h||h.classList.contains('solid'))return;
+const u=()=>h.classList.toggle('scrolled',scrollY>40||document.querySelector('.menu.open'));u();addEventListener('scroll',u,{passive:true});
+const bg=document.querySelector('.burger');bg&&bg.addEventListener('click',()=>setTimeout(u,0));})();

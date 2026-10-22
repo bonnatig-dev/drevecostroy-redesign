@@ -25,3 +25,11 @@
 
 ## Карта
 Яндекс.Карты, iframe `yandex.by/map-widget/v1/?text=Минск, ул. Козлова, 24А корпус 2&z=16`. Адрес реальный, с сайта; виджет работает **поиском по адресу** (без координат/ID организации) — при внедрении заменить на точную метку из конструктора Яндекс.Карт.
+
+
+## Светлая версия v2 (light)
+Тёплая светлая палитра (#f7f3ec / #efe8dc, шалфей, хвоя #2f4a3a, дерево, мёд/терракота #b0612b), светлые карточки с мягкими тенями, хвойный футер, прозрачная шапка → светлая с blur при прокрутке, «Единый телефон для всех операторов: 628-07-07» (tel:+375296280707) на всех страницах.
+
+### Стоковые фото (только атмосфера, не в карточках моделей) — Unsplash License
+- img/stock-ozero.webp — Vivian K, «Brown wooden dock on lake during daytime», https://unsplash.com/photos/ffmoMwIczfk
+- img/stock-les.webp — Aaron Burden, «Brown wooden dock near calm body of water surrounded by trees», https://unsplash.com/photos/aRya3uMiNIA
