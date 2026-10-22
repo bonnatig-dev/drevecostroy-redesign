@@ -110,3 +110,5 @@ footer a.ul{display:inline-block}footer .logo{background:transparent!important;p
 @media(max-width:1100px){.rs .rv{flex-basis:calc((100% - var(--g))/2)}}
 @media(max-width:900px){.cons{grid-template-columns:1fr;gap:36px}.cph img{aspect-ratio:4/3}.fg{grid-template-columns:1fr}}
 @media(max-width:600px){.rs .rv{flex-basis:100%;padding:22px}.md-box{padding:30px 20px}}
+
+.map{display:block;max-width:100%;border:1px solid var(--pine)!important;border-radius:14px;filter:grayscale(.85) invert(.9) hue-rotate(180deg) contrast(.9);background:var(--pd)}
