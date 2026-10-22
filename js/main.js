@@ -29,3 +29,21 @@ $$('.rv-in').forEach(el=>io?io.observe(el):el.classList.add('vis'));
 
 // header: background + blur on scroll
 (function(){const h=document.querySelector('header');if(!h)return;const u=()=>h.classList.toggle('scrolled',scrollY>40);u();addEventListener('scroll',u,{passive:true});})();
+
+// reviews slider
+(function(){const t=$('.rs-t');if(!t)return;const cs=$$('.rv',t),d=$('.rs-d'),p=$('.rs-p'),n=$('.rs-n');
+const per=()=>Math.max(1,Math.round(t.clientWidth/cs[0].getBoundingClientRect().width));
+const pages=()=>Math.ceil(cs.length/per());let pg=0;
+function build(){d.innerHTML='';for(let k=0;k<pages();k++){const b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.setAttribute('aria-label','Страница '+(k+1));b.onclick=()=>to(k);d.appendChild(b)}upd()}
+function to(k){pg=Math.max(0,Math.min(pages()-1,k));t.scrollLeft=cs[pg*per()].offsetLeft-cs[0].offsetLeft;setTimeout(upd,500)}
+function upd(){pg=Math.round((t.scrollLeft)/(cs[0].getBoundingClientRect().width*per()+1e-9));if(t.scrollLeft+t.clientWidth>=t.scrollWidth-4)pg=pages()-1;$$('button',d).forEach((b,k)=>b.setAttribute('aria-selected',k==pg));p.disabled=t.scrollLeft<4;n.disabled=t.scrollLeft+t.clientWidth>=t.scrollWidth-4}
+p.onclick=()=>to(pg-1);n.onclick=()=>to(pg+1);t.addEventListener('scroll',()=>{clearTimeout(t._u);t._u=setTimeout(upd,80)},{passive:true});
+t.addEventListener('keydown',e=>{if(e.key=='ArrowRight'){e.preventDefault();to(pg+1)}if(e.key=='ArrowLeft'){e.preventDefault();to(pg-1)}});
+let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(build,150)});build();window.rsTo=to})();
+// modal
+(function(){let last;const sel='a[href],button:not([disabled]),input:not([tabindex="-1"]),textarea,select,[tabindex]:not([tabindex="-1"])';
+function open(m){last=document.activeElement;m.hidden=false;document.body.classList.add('lock');const f=$$(sel,m).filter(x=>x.offsetParent);(f[1]||f[0]).focus()}
+function close(m){m.hidden=true;document.body.classList.remove('lock');last&&last.focus()}
+$$('[data-open]').forEach(b=>b.onclick=()=>open(document.getElementById(b.dataset.open)));
+$$('.md').forEach(m=>{$('.md-x',m).onclick=()=>close(m);m.addEventListener('click',e=>{if(e.target==m)close(m)});
+m.addEventListener('keydown',e=>{if(e.key=='Escape'){e.stopPropagation();close(m)}if(e.key=='Tab'){const f=$$(sel,m).filter(x=>x.offsetParent);if(!f.length)return;const a=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement==a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement==z){e.preventDefault();a.focus()}}})});})();
